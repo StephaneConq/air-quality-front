@@ -105,17 +105,19 @@ export class MapComponent implements AfterViewInit, OnInit {
         resolve();
       } else {
         this.cityData = null;
-        this.snackBar.open(`Pas de données pour ${details.cityName}`, 'Fermer', {
-          duration: 2000
-        });
         this.airvisualService.getDataFromCoordinates(lat, lng).subscribe((data2: { status: string, data: CityData }) => {
           if (data2.status === 'success') {
             this.cityData = data2.data;
-            this.noResult = {
-              message: `Pas de résultats pour ${details.cityName}, résultats pour ${data2.data.city}`,
-              target: details.cityName,
-              replacement: data2.data.city
-            };
+            if (details.cityName !== data2.data.city) {
+              this.noResult = {
+                message: `Pas de résultats pour ${details.cityName}, résultats pour ${data2.data.city}`,
+                target: details.cityName,
+                replacement: data2.data.city
+              };
+              this.snackBar.open(`Pas de données pour ${details.cityName}`, 'Fermer', {
+                duration: 2000
+              });
+            }
             if (this.responsiveService.isMobile) {
               this.responsiveService.mobileDetailsBS.next({
                 displayData: this.cityData,

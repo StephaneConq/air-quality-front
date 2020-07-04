@@ -14,6 +14,8 @@ import {ApiInterceptor} from './_interceptor/api.interceptor';
 import { SearchbarComponent } from './_components/searchbar/searchbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DetailsMobileComponent } from './_components/details-mobile/details-mobile.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { DetailsMobileComponent } from './_components/details-mobile/details-mob
     FlexLayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {

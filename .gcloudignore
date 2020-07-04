@@ -1,0 +1,6 @@
+src/
+e2e/
+node_modules
+karma.conf.js
+.editorconfig
+tslint.json
