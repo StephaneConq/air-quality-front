@@ -1,0 +1,21 @@
+<main [ngClass]="{'loading': isLoading}" fxLayout="row" fxLayoutAlign="center center">
+  <div class="map-container">
+    <google-map
+      [options]="options"
+      (mapClick)="mapClick($event)"
+      [center]="center"
+      [zoom]="zoom"
+      width="100%"
+      height="100%">
+      <map-polygon *ngIf="polygonOption" [options]="polygonOption"></map-polygon>
+    </google-map>
+  </div>
+  <div class="details-container" *ngIf="cityData && !isMobile">
+    <app-details (closeDetails)="cityData = null; polygonOption = null;"
+                 [noResult]="noResult"
+                 [displayData]="cityData">
+
+    </app-details>
+  </div>
+</main>
+<app-searchbar (selectCityEvent)="selectCity($event)"></app-searchbar>

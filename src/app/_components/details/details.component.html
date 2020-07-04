@@ -1,0 +1,40 @@
+<div class="main-container" fxLayout="column">
+  <div fxFlex="10" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayoutAlign="start center" fxLayout="row" class="name">
+      <span>{{noResult ? noResult.target : displayData.city}}</span>
+      <mat-icon
+        [matTooltip]="noResult.message"
+        *ngIf="noResult && noResult.target !== noResult.replacement">info</mat-icon>
+    </div>
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div fxFlex="90" fxLayout="column">
+
+    <div fxFlex="15" fxLayoutAlign="space-between center" class="weather-container">
+      <img [src]="'assets/weather-icons/' + displayData.current.weather.ic + '.png'" />
+      <span>{{displayData.current.weather.tp}} °C</span>
+    </div>
+
+    <div fxFlex="20" fxLayout="column" fxLayoutAlign="space-around start">
+      <span>Humidité : {{displayData.current.weather.hu}} %</span>
+      <span>Vent : {{(displayData.current.weather.ws * 3.6 | number)}} km/h</span>
+      <span>Pression atmo. : {{displayData.current.weather.pr}} hPa</span>
+    </div>
+
+    <div fxFlex="20" fxLayout="column" fxLayoutAlign="space-around start">
+      <span>Qualité de l'air (standard US) :
+        <span [ngStyle]="{'color': getAirQuality(displayData.current.pollution.aqius).color}">
+          {{getAirQuality(displayData.current.pollution.aqius).label}}
+        </span>
+      </span>
+      <span>Qualité de l'air (standard Chine) :
+        <span [ngStyle]="{'color': getAirQuality(displayData.current.pollution.aqicn).color}">
+          {{getAirQuality(displayData.current.pollution.aqicn).label}}
+        </span>
+      </span>
+    </div>
+
+  </div>
+</div>

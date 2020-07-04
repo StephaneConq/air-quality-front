@@ -1,0 +1,21 @@
+.main-container {
+  height: 100%;
+  padding: 0 15px;
+  background-color: #212121;
+  color: white;
+
+  .name {
+
+    mat-icon {
+      margin-left: 10px;
+    }
+  }
+
+  .weather-container {
+
+    img {
+      width: 50px;
+    }
+  }
+
+}
