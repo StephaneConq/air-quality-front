@@ -43,7 +43,8 @@ export class MapComponent implements AfterViewInit, OnInit {
   polygonOption: PolygonOptions = null;
   options: google.maps.MapOptions = {
     fullscreenControl: false,
-    mapTypeControl: false
+    mapTypeControl: false,
+    gestureHandling: 'greedy'
   };
 
   ngOnInit(): void {
